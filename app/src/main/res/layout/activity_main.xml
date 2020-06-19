@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <com.qq.e.ads.nativ.widget.NativeAdContainer
+        android:id="@+id/ad_nac_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_bg">
+
+        <RelativeLayout
+            android:id="@+id/btn_1_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="卡券广告"
+                android:textColor="#fff" />
+        </RelativeLayout>
+    </com.qq.e.ads.nativ.widget.NativeAdContainer>
+
+    <com.qq.e.ads.nativ.widget.NativeAdContainer
+        android:id="@+id/ad_nac_download"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_bg">
+
+        <RelativeLayout
+            android:id="@+id/btn_2_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="下载广告"
+                android:textColor="#fff" />
+        </RelativeLayout>
+    </com.qq.e.ads.nativ.widget.NativeAdContainer>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_3"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="#fff"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_bg"
+        android:onClick="onClick"
+        android:text="视频广告" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:textColor="#fff"
+        android:id="@+id/btn_4"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_bg"
+        android:onClick="onClick"
+        android:text="开屏广告" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_marginTop="10dp"
+        android:textColor="#fff"
+        android:id="@+id/btn_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape_bg"
+        android:onClick="onClick"
+        android:text="banner广告" />
+
+
+</android.support.v7.widget.LinearLayoutCompat>
