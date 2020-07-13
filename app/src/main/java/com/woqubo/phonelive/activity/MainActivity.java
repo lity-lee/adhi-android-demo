@@ -1,5 +1,7 @@
 package com.woqubo.phonelive.activity;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import com.qq.e.ads.nativ.widget.NativeAdContainer;
 import com.tencent.ep.shanhuad.adpublic.ADError;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.ADCard;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.ADDownLoad;
+import com.tencent.ep.shanhuad.adpublic.adbuilder.ADFullScreenVideo;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.AdInfoListener;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.RewardVideo;
 import com.tencent.ep.shanhuad.adpublic.models.AdID;
@@ -24,6 +27,7 @@ import com.woqubo.phonelive.Constant;
 import com.woqubo.phonelive.R;
 import com.woqubo.phonelive.utils.CommonUtil;
 import com.woqubo.phonelive.utils.ToastUtil;
+import com.woqubo.phonelive.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout mButton1;
     private NativeAdContainer mDownLoad;
     private RelativeLayout mButton2;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Util.requestPermission(this, Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         initView();
         newThread(new Runnable() {
             @Override
@@ -53,7 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 getTaskAndAd(103);
             }
         });
+        initDialog();
 
+    }
+
+    private void initDialog() {
+        if (mProgressDialog==null){
+            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog.setTitle("正在加载中");
+        }
     }
 
     private void initView() {
@@ -90,6 +105,31 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.btn_6:
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(138);
+                    }
+                });
+            case R.id.btn_7:
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(128);
+                    }
+                });
+                break;
+            case R.id.btn_8:
+                mProgressDialog.show();
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(137);
+                    }
+                });
+                break;
+
         }
     }
 //    创建线程
@@ -136,6 +176,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(CommonUtil.getContext(),SplashActivity.class);
                 intent1.putExtra(Constant.AD_ID,adRequestData.positionId);
                 startActivity(intent1);
+                break;
+            case Constant.AD_VIDEO_FEEDS:
+                Intent intent2 = new Intent(MainActivity.this, TestContentAllianceActivity.class);
+                intent2.putExtra(Constant.AD_ID,adRequestData.positionId);
+                startActivity(intent2);
+                break;
+            case Constant.AD_FEED:
+                Intent intent3 = new Intent(MainActivity.this,FeedAdActivity.class);
+                intent3.putExtra(Constant.AD_ID,adRequestData.positionId);
+                startActivity(intent3);
+                break;
+            case Constant.AD_VIDEO_FULL:
+                getAdFullScreenVideo(adRequestData.positionId);
                 break;
         }
 
@@ -254,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
         mRewardVedio.load(new RewardVideo.RVListener(){
             @Override
             public void loaded() {
-                mRewardVedio.showAD();
+                mRewardVedio.showAD(MainActivity.this);
             }
 
             @Override
@@ -289,6 +342,51 @@ public class MainActivity extends AppCompatActivity {
     private void getTaskAndAd(int taskId){
         AdRequestData AdRequestData = getTask(taskId);
         getAdFromBusiness(AdRequestData);
+    }
+    private void getAdFullScreenVideo(int adId){
+
+        int id = 99502948;
+        if(adId > 0){
+            id = adId;
+        }
+        final ADFullScreenVideo fullScreenVideo = new ADFullScreenVideo();
+        fullScreenVideo.load(new ADFullScreenVideo.FSListener() {
+            @Override
+            public void onAdError(ADError adError) {
+                mProgressDialog.dismiss();
+            }
+
+            @Override
+            public void loaded() {
+                mProgressDialog.dismiss();
+                fullScreenVideo.showAD(MainActivity.this);
+            }
+
+            @Override
+            public void onAdClicked() {
+
+            }
+
+            @Override
+            public void onPageDismiss() {
+
+            }
+
+            @Override
+            public void onVideoPlayEnd() {
+
+            }
+
+            @Override
+            public void onVideoPlayStart() {
+
+            }
+
+            @Override
+            public void onSkippedVideo() {
+
+            }
+        },new AdID(id,968,300));
     }
 
 

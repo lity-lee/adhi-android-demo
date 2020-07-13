@@ -45,7 +45,8 @@
             android:name=".activity.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.BannerActivity" android:screenOrientation="fullSensor"/>
-
+        <activity android:name=".activity.TestContentAllianceActivity" android:screenOrientation="fullSensor"/>
+        <activity android:name=".activity.FeedAdActivity" android:screenOrientation="fullSensor"/>
     </application>
 
 </manifest>
