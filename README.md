@@ -1,30 +1,21 @@
 ##  1 导入文件：
 ###  1.1 导入SDK
-#### 下载[AdhiSdk](http://admo5-static.2bx.com/adhi/android/aar/adhi-sdk-v2.1.zip "AdSdk")，复制到应用Module/libs文件夹（没有的话须手动创建）并将以下代码添加到您app的build.gradle中:
+#### 下载[AdhiSdk](http://admo5-static.2bx.com/adhi/android/aar/adhi-sdk.zip "AdSdk")，复制到应用Module/libs文件夹（没有的话须手动创建）并将以下代码添加到您app的build.gradle中:
 ```xml
  repositories {
         flatDir { dirs 'libs' }
     }
-android {
-	defaultConfig {
-	ndk {
-		abiFilters "armeabi-v7a"
-}
-}
-    api(name: 'adapt-1.3.3', ext: 'aar')
+	api(name: 'adapt-1.3.3', ext: 'aar')
     api(name: 'commonbase-1.0.2', ext: 'aar')
-    api(name: 'discovery-2.0.17', ext: 'aar')
+    api(name: 'discovery-2.0.14', ext: 'aar')
     api(name: 'GDTSDK.unionNormal.4.211.1081', ext: 'aar')
-    api(name: 'shanhuAD-1.3.1', ext: 'aar')
-    api(name: "ks_adsdk-2.6.8", ext: 'aar')
+    api(name: 'shanhuAD.1.2.0', ext: 'aar')
 ```
 #####将40805.dat文件放至assets文件夹下，注意禁止修改文件名否则可能导致，初始化失败.
 ![示例](https://www.showdoc.cc/server/api/common/visitfile/sign/f584887861d4dcd0f50593904acf8e80?showdoc=.jpg "示例")
 ####提示：adhi Sdk需要接入android.support.v4：
 ```xml
 implementation 'com.android.support:support-v4:28.0.0'
-implementation 'com.android.support:appcompat-v7:28.0.0'
-implementation 'com.android.support:recyclerview-v7:28.0.0'
 ```
 ### 1.2添加对应的权限
 ```xml
@@ -73,6 +64,7 @@ implementation 'com.android.support:recyclerview-v7:28.0.0'
 mBresult = TMSDKContext.init(this, new AbsTMSConfig() {
 @Override
 public String getServerAddress() {
+
 return ''mazutest.3g.qq.com";
 }
 });
@@ -100,9 +92,6 @@ public interface H5BrowserListener {
 |  开屏广告 | ADSplashImage  |[示例](https://www.showdoc.cc/h5sdk?page_id=4730339527768742 "示例")
 |   下载广告 |  ADDownLoad |[示例](https://www.showdoc.cc/h5sdk?page_id=4730163365561201 "示例")
 |   卡券广告 |  ADCard |[示例](https://www.showdoc.cc/h5sdk?page_id=4731147540076884 "示例")
-|短视频广告|ADContentAlliance|[示例](https://www.showdoc.cc/h5sdk?page_id=4899395230450472 "示例")
-|信息流广告|ADFeed |[示例](https://www.showdoc.cc/h5sdk?page_id=4898645419157139 "示例")
-|全屏视频广告|ADFullScreenVideo |[示例](https://www.showdoc.cc/h5sdk?page_id=4899578977418138 "示例")
 ##5广告统计测试及广告切换正式环境
 ###1.1广告上报数据查询：
 #####接入方集中测试广告，并提供如下信息
@@ -110,15 +99,15 @@ public interface H5BrowserListener {
 测试imei：
 测试guid：
 
-|  |102卡券广告   |103下载广告   |104视频广告   |131视频广告   |134下载广告   | 125开屏广告  |130banner广告  |128信息流广告|137全屏视频广告|138内容联盟|
+|  |102卡券广告   |103下载广告   |104视频广告   |131视频广告   |134下载广告   | 125开屏广告  |130banner广告  |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|曝光   |   |   |   |   |   |   |   ||||
-|   点击|   |   |   |   |   |   |   ||||
-|   开始下载|   |   |   |   |   |   |   ||||
-|   安装|   |   |   |   |   |   |   ||||
-|   激活|   |   |   |   |   |   |   ||||
-|   视频播放|   |   |   |   |   |   |   ||||
-#####注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-report-v2.1.xlsx "word模版下载")
+|曝光   |   |   |   |   |   |   |   |
+|   点击|   |   |   |   |   |   |   |
+|   开始下载|   |   |   |   |   |   |   |
+|   安装|   |   |   |   |   |   |   |
+|   激活|   |   |   |   |   |   |   |
+|   视频播放|   |   |   |   |   |   |   |
+#####注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-testdata-report.xlsx "word模版下载")
 #####提示：131、134属于测试环境才拥有广告类型
 ###1.2切换环境
 ####当测试没问题之后，替换成正式参数的40805.dat文件，同时初始化将地址改为"mazu.3g.qq.com"如下：
@@ -131,3 +120,9 @@ public interface H5BrowserListener {
         });
 ```
 ###1.3重新正式版广告上报数据查询，测试方式与1.1一致。
+###demo地址：https://github.com/lity-lee/adhi-android-demo
+
+
+
+
+
