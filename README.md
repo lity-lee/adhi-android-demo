@@ -11,9 +11,9 @@
     api(name: 'GDTSDK.unionNormal.4.211.1081', ext: 'aar')
     api(name: 'shanhuAD.1.2.0', ext: 'aar')
 ```
-#####将40805.dat文件放至assets文件夹下，注意禁止修改文件名否则可能导致，初始化失败.
+##### 将40805.dat文件放至assets文件夹下，注意禁止修改文件名否则可能导致，初始化失败.
 ![示例](https://www.showdoc.cc/server/api/common/visitfile/sign/f584887861d4dcd0f50593904acf8e80?showdoc=.jpg "示例")
-####提示：adhi Sdk需要接入android.support.v4：
+#### 提示：adhi Sdk需要接入android.support.v4：
 ```xml
 implementation 'com.android.support:support-v4:28.0.0'
 ```
@@ -27,7 +27,7 @@ implementation 'com.android.support:support-v4:28.0.0'
 <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 ```
 ## 2适配不同版本
-###2.1 适配7.0及以上
+### 2.1 适配7.0及以上
 ##### 如果您的应用需要在Anroid7.0及以上环境运行，请在AndroidManifest中添加如下代码：
 ```xml
 <provider
@@ -41,7 +41,7 @@ implementation 'com.android.support:support-v4:28.0.0'
     </provider>
 ```
 ##### 在res/xml目录下，新建一个xml文件gdt_file_path，在该文件中添加如下代码：
-####提示下载地址不要更改
+#### 提示下载地址不要更改
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
     <paths   xmlns:android="http://schemas.android.com/apk/res/android">
@@ -59,7 +59,7 @@ implementation 'com.android.support:support-v4:28.0.0'
 ### android:usesCleartextTraffic=”true”
 
 ## 3 SDK集成部署介绍
-###3.1初始化，在application添加如下代码：
+### 3.1初始化，在application添加如下代码：
 ````xml
 mBresult = TMSDKContext.init(this, new AbsTMSConfig() {
 @Override
@@ -72,8 +72,8 @@ return ''mazutest.3g.qq.com";
 ShanHuAD.init(TMSDKContext.getApplicationContext(),
 new H5Browser(),TMSDKContext.getCoinProductId());
 ````
-#####说明H5Browser 为H5BrowserListener实现类，实现下载、安装、激活、以及上报操作。下载[H5Browser](http://admo5-static.2bx.com/adhi/android/aar/H5Browser.java "H5Browser")
-#####H5BrowserListener接口说明
+##### 说明H5Browser 为H5BrowserListener实现类，实现下载、安装、激活、以及上报操作。下载[H5Browser](http://admo5-static.2bx.com/adhi/android/aar/H5Browser.java "H5Browser")
+##### H5BrowserListener接口说明
 ````xml
 public interface H5BrowserListener {
     //var1：跳转H5路径
@@ -82,9 +82,9 @@ public interface H5BrowserListener {
     void openAppDetailPage(AdMetaInfo var1, AdDisplayModel var2);
 }
 ````
-##4广告拉取
-####流程拉取任务->拉取对应广告->展示广告
-####具体操作请查看示例
+## 4广告拉取
+#### 流程拉取任务->拉取对应广告->展示广告
+#### 具体操作请查看示例
 |   广告类型| 类名  |示例与文档|
 | ------------ | ------------ |------------|
 |   激励视频广告 | RewardVideo  |[示例](https://www.showdoc.cc/h5sdk?page_id=4730957262897097 "示例")
@@ -92,9 +92,9 @@ public interface H5BrowserListener {
 |  开屏广告 | ADSplashImage  |[示例](https://www.showdoc.cc/h5sdk?page_id=4730339527768742 "示例")
 |   下载广告 |  ADDownLoad |[示例](https://www.showdoc.cc/h5sdk?page_id=4730163365561201 "示例")
 |   卡券广告 |  ADCard |[示例](https://www.showdoc.cc/h5sdk?page_id=4731147540076884 "示例")
-##5广告统计测试及广告切换正式环境
-###1.1广告上报数据查询：
-#####接入方集中测试广告，并提供如下信息
+## 5广告统计测试及广告切换正式环境
+### 1.1广告上报数据查询：
+##### 接入方集中测试广告，并提供如下信息
 测试时间：X日-X点X分~X点X分
 测试imei：
 测试guid：
@@ -107,10 +107,10 @@ public interface H5BrowserListener {
 |   安装|   |   |   |   |   |   |   |
 |   激活|   |   |   |   |   |   |   |
 |   视频播放|   |   |   |   |   |   |   |
-#####注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-testdata-report.xlsx "word模版下载")
-#####提示：131、134属于测试环境才拥有广告类型
-###1.2切换环境
-####当测试没问题之后，替换成正式参数的40805.dat文件，同时初始化将地址改为"mazu.3g.qq.com"如下：
+##### 注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-testdata-report.xlsx "word模版下载")
+##### 提示：131、134属于测试环境才拥有广告类型
+### 1.2切换环境
+#### 当测试没问题之后，替换成正式参数的40805.dat文件，同时初始化将地址改为"mazu.3g.qq.com"如下：
 ```java
   mBresult = TMSDKContext.init(this, new AbsTMSConfig() {
             @Override
@@ -119,5 +119,5 @@ public interface H5BrowserListener {
             }
         });
 ```
-###1.3重新正式版广告上报数据查询，测试方式与1.1一致。
-###demo地址：https://github.com/lity-lee/adhi-android-demo
+### 1.3重新正式版广告上报数据查询，测试方式与1.1一致。
+### demo地址：https://github.com/lity-lee/adhi-android-demo
