@@ -118,6 +118,7 @@ public interface H5BrowserListener {
 |   安装|   |   |   |   |   |   |   ||||
 |   激活|   |   |   |   |   |   |   ||||
 |   视频播放|   |   |   |   |   |   |   ||||
+
 ##### 注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-report-v2.1.xlsx "word模版下载")
 ##### 提示：131、134属于测试环境才拥有广告类型
 ### 1.2切换环境
