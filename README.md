@@ -81,7 +81,7 @@ public interface H5BrowserListener {
 	// 封装下载url和广告数据
     void openAppDetailPage(AdMetaInfo var1, AdDisplayModel var2);
 }
-```
+````
 ##4广告拉取
 ####流程拉取任务->拉取对应广告->展示广告
 ####具体操作请查看示例
