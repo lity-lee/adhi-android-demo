@@ -2,14 +2,12 @@ package com.woqubo.phonelive.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import com.tencent.ep.shanhuad.adpublic.ADError;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.ADFeed;
 import com.tencent.ep.shanhuad.adpublic.models.AdID;
@@ -36,7 +34,7 @@ public class FeedAdActivity extends Activity {
         mFeedList = new ArrayList<>();
         mFeedListAdapter = new FeedListAdapter();
         mListView.setAdapter(mFeedListAdapter);
-        mADFeed = new ADFeed(false,true);
+        mADFeed = new ADFeed(true,true);
         mADFeed.load(new FeedListenerImpl(),new AdID(adid,968,300));
 
     }

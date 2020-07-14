@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         getTaskAndAd(138);
                     }
                 });
+                break;
             case R.id.btn_7:
                 newThread(new Runnable() {
                     @Override
@@ -344,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
         getAdFromBusiness(AdRequestData);
     }
     private void getAdFullScreenVideo(int adId){
-
         int id = 99502948;
         if(adId > 0){
             id = adId;

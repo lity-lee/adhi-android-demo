@@ -15,7 +15,7 @@ public class Constant {
     public static final String  AD_SPLASH="COIN_SPLASH_EXIT";
 //    跳转key
     public static final String  AD_ID = "INTENT_AD_ID";
-//   联盟广告
+//   内容联盟广告
     public static final String  AD_VIDEO_FEEDS="COIN_VIDEO_FEEDS";
 //    信息流广告
     public static final String AD_FEED = "COIN_FEED_EXIT";
