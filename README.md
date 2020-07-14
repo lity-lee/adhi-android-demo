@@ -93,6 +93,7 @@ public interface H5BrowserListener {
 ##4广告拉取
 ####流程拉取任务->拉取对应广告->展示广告
 ####具体操作请查看示例
+
 |   广告类型| 类名  |示例与文档|
 | ------------ | ------------ |------------|
 |   激励视频广告 | RewardVideo  |[示例](https://www.showdoc.cc/h5sdk?page_id=4730957262897097 "示例")
@@ -103,6 +104,7 @@ public interface H5BrowserListener {
 |短视频广告|ADContentAlliance|[示例](https://www.showdoc.cc/h5sdk?page_id=4899395230450472 "示例")
 |信息流广告|ADFeed |[示例](https://www.showdoc.cc/h5sdk?page_id=4898645419157139 "示例")
 |全屏视频广告|ADFullScreenVideo |[示例](https://www.showdoc.cc/h5sdk?page_id=4899578977418138 "示例")
+
 ##5广告统计测试及广告切换正式环境
 ###1.1广告上报数据查询：
 #####接入方集中测试广告，并提供如下信息
@@ -118,6 +120,7 @@ public interface H5BrowserListener {
 |   安装|   |   |   |   |   |   |   ||||
 |   激活|   |   |   |   |   |   |   ||||
 |   视频播放|   |   |   |   |   |   |   ||||
+
 #####注意事项：guid可以通过日志进行过滤GUID获取，每次安装guid值会变化。一次测试请误多次安装，导致数据不准确。[word模版下载](http://admo5-static.2bx.com/adhi/android/aar/ad-report-v2.1.xlsx "word模版下载")
 #####提示：131、134属于测试环境才拥有广告类型
 ###1.2切换环境
