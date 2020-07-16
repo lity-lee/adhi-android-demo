@@ -4,11 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-
 import com.qq.e.ads.nativ.NativeUnifiedADData;
-import com.qq.e.ads.nativ.widget.NativeAdContainer;
 import com.tencent.ep.shanhuad.adpublic.ADError;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.ADCard;
 import com.tencent.ep.shanhuad.adpublic.adbuilder.ADDownLoad;
@@ -22,6 +18,8 @@ import com.tmsdk.module.coin.AdRequestData;
 import com.tmsdk.module.coin.CmpAdConfig;
 import com.woqubo.phonelive.Constant;
 import com.woqubo.phonelive.R;
+import com.woqubo.phonelive.dialog.CardAdDialog;
+import com.woqubo.phonelive.dialog.DownloadAdDialog;
 import com.woqubo.phonelive.utils.CommonUtil;
 import com.woqubo.phonelive.utils.ToastUtil;
 
@@ -30,42 +28,35 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private NativeAdContainer mCard;
-    private RelativeLayout mButton1;
-    private NativeAdContainer mDownLoad;
-    private RelativeLayout mButton2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
-        newThread(new Runnable() {
-            @Override
-            public void run() {
-                getTaskAndAd(102);
-
-            }
-        });
-        newThread(new Runnable() {
-            @Override
-            public void run() {
-                getTaskAndAd(103);
-            }
-        });
-
     }
 
-    private void initView() {
-        mCard = findViewById(R.id.ad_nac_card);
-        mDownLoad = findViewById(R.id.ad_nac_download);
-        mButton2 = findViewById(R.id.btn_2_all);
-        mButton1 = findViewById(R.id.btn_1_all);
-    }
 
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
+            case R.id.btn_1_all:
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(102);
+
+                    }
+                });
+                break;
+            case R.id.btn_2_all:
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(103);
+                    }
+                });
+                break;
             case R.id.btn_3:
                 newThread(new Runnable() {
                     @Override
@@ -157,7 +148,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if(list != null && list.size() > 0){
-                            mADDownLoad.registerViewForInteraction(list.get(0),mDownLoad,mButton2);
+                            DownloadAdDialog downloadAdDialog = new DownloadAdDialog(list.get(0),mADDownLoad);
+                            downloadAdDialog.show(getSupportFragmentManager(),"download");
                         }else{
                             ToastUtil.show("拉取为空");
                         }
@@ -208,7 +200,9 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
 //                        信息展示上报
                         if (list.size()>0){
-                            mADCard.registerViewForInteraction(list.get(0),mCard,mButton1);
+                            CardAdDialog cardAdDialog = new CardAdDialog(list.get(0),mADCard);
+                            cardAdDialog.show(getSupportFragmentManager(),"card");
+//                            mADCard.registerViewForInteraction(list.get(0),mCard,mButton1);
                         }else {
                             ToastUtil.show("没有获取到广告");
                         }

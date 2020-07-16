@@ -37,5 +37,7 @@ public class AdHiApplication extends Application {
     public static Context getAdHiApplicationContext(){
         return mContext;
     }
-
+    public static int  getScreenW(){
+        return getAdHiApplicationContext().getResources().getDisplayMetrics().widthPixels;
+    }
 }
