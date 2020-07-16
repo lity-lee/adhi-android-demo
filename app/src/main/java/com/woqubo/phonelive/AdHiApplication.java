@@ -38,4 +38,7 @@ public class AdHiApplication extends Application {
         return mContext;
     }
 
+    public static int  getScreenW(){
+       return getAdHiApplicationContext().getResources().getDisplayMetrics().widthPixels;
+    }
 }
