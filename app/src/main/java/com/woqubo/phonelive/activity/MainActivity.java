@@ -128,6 +128,24 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 break;
+            case R.id.btn_9:
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(131);
+                    }
+                });
+                break;
+            case R.id.btn_10:
+                mProgressDialog.show();
+
+                newThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getTaskAndAd(132);
+                    }
+                });
+                break;
 
         }
     }
@@ -308,12 +326,13 @@ public class MainActivity extends AppCompatActivity {
         mRewardVedio.load(new RewardVideo.RVListener(){
             @Override
             public void loaded() {
+                mProgressDialog.dismiss();
                 mRewardVedio.showAD(MainActivity.this);
             }
 
             @Override
             public void onAdError(ADError adError) {
-
+                mProgressDialog.dismiss();
             }
 
             @Override
