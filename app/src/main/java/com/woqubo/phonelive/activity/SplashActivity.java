@@ -25,8 +25,8 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         public void onAdError(ADError adError) {
-//            ToastUtil.show(adError.msg);
-            android.util.Log.d("SplashActivity" , adError.msg);
+            ToastUtil.show(adError.msg);
+//            android.util.Log.d("SplashActivity" , adError.msg);
 
         }
 
