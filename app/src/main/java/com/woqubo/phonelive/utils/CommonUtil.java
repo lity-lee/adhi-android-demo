@@ -1,8 +1,11 @@
 package com.woqubo.phonelive.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
@@ -72,16 +75,21 @@ public class CommonUtil {
      * @param path apk的路径
      * @return
      */
+    @SuppressLint("WrongConstant")
     public static boolean installApkByPath(Context mContext, String path) {
         try {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Uri url = null;
         if (Build.VERSION.SDK_INT>Build.VERSION_CODES.N) {
-            Uri uriForFile = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", new File(path));
-            intent.setDataAndType(uriForFile,"\"application/vnd.android.package-archive\"");
+            url = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", new File(path));
         }else {
-            intent.setDataAndType(Uri.fromFile(new File(path)), "application/vnd.android.package-archive");
+            url =Uri.fromFile(new File(path));
         }
+        intent.setDataAndType(url,"application/vnd.android.package-archive");
+            for (ResolveInfo resolveInfo : mContext.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)) {
+                mContext.grantUriPermission(resolveInfo.activityInfo.packageName, url, 3);
+            }
         mContext.startActivity(intent);
             return true;
         } catch (Throwable e) {
